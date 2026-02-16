@@ -1,0 +1,56 @@
+{
+  "info": {
+    "name": "Axiom API",
+    "description": "Collection for authentication and board endpoints",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Register",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"organization_name\": \"Acme Corp\",\n  \"name\": \"Admin User\",\n  \"email\": \"admin@acme.test\",\n  \"password\": \"password\",\n  \"password_confirmation\": \"password\"\n}"
+        },
+        "url": { "raw": "{{baseUrl}}/api/register", "host": ["{{baseUrl}}"], "path": ["api","register"] }
+      }
+    },
+    {
+      "name": "Login",
+      "request": {
+        "method": "POST",
+        "header": [ { "key": "Content-Type", "value": "application/json" } ],
+        "body": { "mode": "raw", "raw": "{\n  \"email\": \"admin@acme.test\",\n  \"password\": \"password\"\n}" },
+        "url": { "raw": "{{baseUrl}}/api/login", "host": ["{{baseUrl}}"], "path": ["api","login"] }
+      }
+    },
+    {
+      "name": "Get User",
+      "request": {
+        "method": "GET",
+        "header": [ { "key": "Authorization", "value": "Bearer {{token}}" }, { "key": "X-Organization-ID", "value": "{{organization_id}}" } ],
+        "url": { "raw": "{{baseUrl}}/api/user", "host": ["{{baseUrl}}"], "path": ["api","user"] }
+      }
+    },
+    {
+      "name": "List Boards",
+      "request": {
+        "method": "GET",
+        "header": [ { "key": "Authorization", "value": "Bearer {{token}}" }, { "key": "X-Organization-ID", "value": "{{organization_id}}" } ],
+        "url": { "raw": "{{baseUrl}}/api/boards", "host": ["{{baseUrl}}"], "path": ["api","boards"] }
+      }
+    },
+    {
+      "name": "Get Board",
+      "request": {
+        "method": "GET",
+        "header": [ { "key": "Authorization", "value": "Bearer {{token}}" }, { "key": "X-Organization-ID", "value": "{{organization_id}}" } ],
+        "url": { "raw": "{{baseUrl}}/api/boards/:id", "host": ["{{baseUrl}}"], "path": ["api","boards",":id"] }
+      }
+    }
+  ]
+}
