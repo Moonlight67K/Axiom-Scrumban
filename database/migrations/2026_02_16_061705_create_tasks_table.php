@@ -16,7 +16,10 @@ return new class extends Migration
             $table->string('title');
             $table->text('description')->nullable();
             $table->integer('position');
-            $table->jsonb('metadata')->default('{}');
+
+            // 🔥 Change this
+            $table->json('metadata')->nullable();
+
             $table->timestamps();
 
             $table->index('column_id');
@@ -24,9 +27,9 @@ return new class extends Migration
             $table->index('sprint_id');
             $table->index(['column_id', 'position']);
         });
-        
-        // Add GIN index for JSONB
-        DB::statement('CREATE INDEX idx_tasks_metadata ON tasks USING GIN (metadata)');
+
+        // ❌ REMOVE THIS (Postgres only)
+        // DB::statement('CREATE INDEX idx_tasks_metadata ON tasks USING GIN (metadata)');
     }
 
     public function down()
